@@ -1,0 +1,333 @@
+.dancing-cat-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: titleBounce 2s ease-in-out infinite;
+}
+
+@keyframes titleBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.cat-wrapper {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 3rem;
+  margin: 2rem auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.dancing-cat {
+  width: 250px;
+  height: 250px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  will-change: transform;
+}
+
+/* 개별 애니메이션 제어 */
+.dancing-cat.dance-active {
+  animation: dance 2s ease-in-out infinite;
+}
+
+.dancing-cat.rotate-active {
+  animation: rotate 4s ease-in-out infinite;
+}
+
+.dancing-cat.jump-active {
+  animation: jump 1.5s ease-in-out infinite;
+}
+
+/* 여러 애니메이션 조합 */
+.dancing-cat.dance-active.rotate-active {
+  animation:
+    dance 2s ease-in-out infinite,
+    rotate 4s ease-in-out infinite;
+}
+
+.dancing-cat.dance-active.jump-active {
+  animation:
+    dance 2s ease-in-out infinite,
+    jump 1.5s ease-in-out infinite;
+}
+
+.dancing-cat.rotate-active.jump-active {
+  animation:
+    rotate 4s ease-in-out infinite,
+    jump 1.5s ease-in-out infinite;
+}
+
+.dancing-cat.dance-active.rotate-active.jump-active {
+  animation:
+    dance 2s ease-in-out infinite,
+    rotate 4s ease-in-out infinite,
+    jump 1.5s ease-in-out infinite;
+}
+
+/* 좌우 흔들기 */
+@keyframes dance {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+  }
+  25% {
+    transform: translateX(-20px) scale(1.05);
+  }
+  75% {
+    transform: translateX(20px) scale(1.05);
+  }
+}
+
+/* 회전 */
+@keyframes rotate {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+/* 점프 */
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+.controls {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.individual-controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.control-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.control-button.main-button {
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+}
+
+.control-button.small {
+  font-size: 1rem;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #48c6ef 0%, #6f86d6 100%);
+}
+
+.control-button.small.active {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.control-button.small:not(.active) {
+  background: linear-gradient(135deg, #868f96 0%, #596164 100%);
+  opacity: 0.7;
+}
+
+.control-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.control-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.control-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(118, 75, 162, 0.5);
+}
+
+.control-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(118, 75, 162, 0.4);
+}
+
+.info {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.info p {
+  color: white;
+  font-size: 1.2rem;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 반응형 디자인 - 태블릿 */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .cat-wrapper {
+    padding: 2rem;
+    min-height: 350px;
+  }
+
+  .dancing-cat {
+    width: 200px;
+    height: 200px;
+  }
+
+  .control-button {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.3rem;
+  }
+
+  .info p {
+    font-size: 1.1rem;
+  }
+}
+
+/* 반응형 디자인 - 모바일 */
+@media (max-width: 480px) {
+  .dancing-cat-container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cat-wrapper {
+    padding: 1.5rem;
+    min-height: 300px;
+  }
+
+  .dancing-cat {
+    width: 150px;
+    height: 150px;
+  }
+
+  .control-button.main-button {
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+  }
+
+  .control-button.small {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .individual-controls {
+    gap: 0.5rem;
+  }
+
+  .info {
+    padding: 1rem;
+  }
+
+  .info p {
+    font-size: 1rem;
+  }
+
+  /* 모바일에서 애니메이션 최적화 */
+  @keyframes dance {
+    0%, 100% {
+      transform: translateX(0) scale(1);
+    }
+    25% {
+      transform: translateX(-15px) scale(1.03);
+    }
+    75% {
+      transform: translateX(15px) scale(1.03);
+    }
+  }
+
+  @keyframes jump {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
+
+/* 터치 디바이스 최적화 */
+@media (hover: none) and (pointer: coarse) {
+  .control-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem;
+  }
+
+  .control-button:hover {
+    transform: none;
+  }
+
+  .control-button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* 접근성 - 애니메이션 감소 선호 */
+@media (prefers-reduced-motion: reduce) {
+  .dancing-cat.dancing {
+    animation: none;
+  }
+
+  .title {
+    animation: none;
+  }
+
+  .control-button {
+    transition: none;
+  }
+}
